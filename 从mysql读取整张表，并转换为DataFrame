@@ -1,0 +1,21 @@
+# -*- coding:utf-8 -*-
+import pymysql
+import pandas as pd
+from pandas import DataFrame, Series
+from sqlalchemy import create_engine
+con = pymysql.connect(host='localhost', user='root', password='***',db = 'test', port=3306)
+cur = con.cursor()
+def read_table(cur,sql_order):
+    try:
+        cur.execute(sql_order)
+        data = cur.fetchall()
+        frame = pd.DataFrame(list(data))
+    except:
+        frame = pd.DataFrame()
+    return frame
+
+read_table(cur,'select * from boda')
+print(read_table(cur,'select * from boda'))
+con.commit()
+cur.close()
+con.close()
