@@ -25,3 +25,43 @@ def crawl():
             url=offer.select('.f-l.intern-detail__job a')[0]['href']
             detial_url(url)
 crawl()
+
+CSS选择器
+soup.select() 筛选元素，返回的是list 
+语法规则：
+标签名 不加任何修饰
+class名前加点
+id名前加 #
+举例
+1、soup.select('title')   soup.find_all('title')
+2、soup.select('a')       soup.find_all('a')
+3、soup.select('.footer')    soup.find_all(True,class = 'footer')  寻找class
+4、soup.select('p #link')  soup.find_all('p', id = 'link')   寻找ID
+5、soup.select('head > title')  soup.head.find_all('title')  寻找子标签
+6、soup.select('a[href="www.baidu.com"]')
+     soup.find_all('a', href = 'www.baidu.com')
+      寻找属性
+
+实际案例
+1、带有多个class属性的标签的CSS选择器选择方法
+<p class="para"> 这是第一个p标签<p/>
+<p class="para tag">这是第二个p标签<p/>
+p.para.tag
+2、标签内的标签的CSS选择器选择方法：
+<p class="para tag">
+         <p>这是第二个p标签<p/>
+<p/>
+
+p.para.tag的所有内部标签（子孙辈都算）
+p.para.tag p
+
+p.para.tag的所有内部标签（子辈）
+p.para.tag>p
+2、带id的标签的CSS选择器选择方法：
+
+<p class="para"> 这是第一个p标签<p/>
+<p class="para tag">
+          <p id = "only_tag">这是第二个p标签<p/>
+<p/>
+
+#only_tag
